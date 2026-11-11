@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explore our music | Ensemble Artemisia</title>
+  <meta name="description" content="Ensemble Artemisia: musicians, recordings and concerts.">
+
+  <!-- Fonts: EB Garamond (text and menu) + Alex Brush (script, large title only).
+       Fallbacks in the CSS keep the page readable if these fail to load. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-music">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="inner-bg" data-pan="page" data-pan-start="0" data-pan-end="70" aria-hidden="true"></div>
+
+  <!-- ===== Shared header: copy this block to every page =====
+       Only change which link has. -->
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Ensemble Artemisia, home">
+      <!-- Replace images/logo.svg with the real logo (keep the file name, or update it here) -->
+      <img src="images/logo.svg" alt="" width="56" height="56">
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="music.html" aria-current="page">Explore our music</a></li>
+        <li><a href="albums.html">Albums</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <!-- Language switch: English only for now.
+           Later: turn this into a link pair, e.g. EN | DE, pointing to a /de/ copy of the site. -->
+      <span class="lang" title="More languages coming later">EN</span>
+    </nav>
+  </header>
+
+  <main id="main" class="inner">
+    <h1>Explore our music</h1>
+
+    <section class="group" aria-labelledby="news-title">
+      <div class="photo">
+        <img src="images/news-competition.jpg" alt="The four musicians holding certificates at a prize ceremony, together with other guests" width="929" height="700">
+      </div>
+      <div>
+        <h2 id="news-title">News</h2>
+        <p>We’re so happy to share that we were awarded 2nd prize at the Kitty Weinberger Competition!</p>
+        <p>It’s been quite a journey: just two weeks after returning from Madrid, we threw ourselves into preparing our French programme for the first time — and introducing a new member of the ensemble: the viola da gamba.</p> 
+        <p>Now it’s time for a little breather… but of course, we already have new plans and a very long to-do list waiting for us.</p> 
+        <p>Thank you to everyone who supported us along the way. On to the next adventure! ✨</p>
+        <p>Picture: © Gerhard Fally </p>
+      </div>
+    </section>
+
+    <section aria-labelledby="videos-title">
+      <h2 id="videos-title">Videos</h2>
+      <div class="videos">
+        <article class="video">
+          <div class="photo">
+            <!-- Thumbnail: save a 16:9 picture as images/videos/leonarda.jpg -->
+            <div class="video-box" style="--poster: url('images/videos/leonarda.jpg')">
+              <!-- Replace VIDEO_ID with the YouTube id (the part after v= in the video link) -->
+              <button class="video-play" type="button" data-video-id="vHhWLtzZTdU" data-title="Isabella Leonarda">
+                <svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="36" cy="36" r="34"/><path d="M29 22 L52 36 L29 50 Z" fill="currentColor" stroke="none"/></svg>
+                <span>Plays on YouTube</span>
+              </button>
+            </div>
+          </div>
+          <h3>Isabella Leonarda</h3>
+          <p class="role">[Piece title]</p>
+        </article>
+        <article class="video">
+          <div class="photo">
+            <!-- Thumbnail: save a 16:9 picture as images/videos/hasse.jpg -->
+            <div class="video-box" style="--poster: url('images/videos/hasse.jpg')">
+              <!-- Replace VIDEO_ID with the YouTube id (the part after v= in the video link) -->
+              <button class="video-play" type="button" data-video-id="WUYTyuvUmt0" data-title="Hasse">
+                <svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="36" cy="36" r="34"/><path d="M29 22 L52 36 L29 50 Z" fill="currentColor" stroke="none"/></svg>
+                <span>Plays on YouTube</span>
+              </button>
+            </div>
+          </div>
+          <h3>Hasse</h3>
+          <p class="role">[Piece title]</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
