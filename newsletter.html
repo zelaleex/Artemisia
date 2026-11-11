@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Newsletter | Ensemble Artemisia</title>
+  <meta name="description" content="Ensemble Artemisia: musicians, recordings and concerts.">
+
+  <!-- Fonts: EB Garamond (text and menu) + Alex Brush (script, large title only).
+       Fallbacks in the CSS keep the page readable if these fail to load. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-newsletter">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="inner-bg" data-pan="page" data-pan-start="0" data-pan-end="70" aria-hidden="true"></div>
+
+  <!-- ===== Shared header: copy this block to every page =====
+       Only change which link has. -->
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Ensemble Artemisia, home">
+      <!-- Replace images/logo.svg with the real logo (keep the file name, or update it here) -->
+      <img src="images/logo.svg" alt="" width="56" height="56">
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="music.html">Explore our music</a></li>
+        <li><a href="albums.html">Albums</a></li>
+        <li><a href="newsletter.html" aria-current="page">Newsletter</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <!-- Language switch: English only for now.
+           Later: turn this into a link pair, e.g. EN | DE, pointing to a /de/ copy of the site. -->
+      <span class="lang" title="More languages coming later">EN</span>
+    </nav>
+  </header>
+
+  <main id="main" class="inner">
+    <h1>Newsletter</h1>
+
+    <section aria-labelledby="signup-title">
+      <h2 id="signup-title">Stay in touch</h2>
+      <p>Concert dates, new recordings and news from the ensemble, sent to you a few times a year.</p>
+
+      <!-- Sign-up form. It does not send anything yet:
+           replace SIGNUP_URL with the form address from your newsletter service
+           (Mailchimp, Brevo, Buttondown, ...), and rename the fields if that service asks for other names.
+           Until then, js/main.js shows a short message instead of sending. -->
+      <form class="signup" action="SIGNUP_URL" method="post">
+        <div class="field">
+          <label for="signup-name">Name <span class="optional">(optional)</span></label>
+          <input id="signup-name" name="name" type="text" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="signup-email">Email address</label>
+          <input id="signup-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <button class="button" type="submit">Subscribe</button>
+        <p class="form-note" role="status"></p>
+      </form>
+
+      <p class="small-print">We use your address only to send you the newsletter. You can unsubscribe at any time.</p>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
