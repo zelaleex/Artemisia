@@ -80,3 +80,17 @@
     });
   });
 })();
+
+// Newsletter form: until a real sign-up address is set in newsletter.html
+// (the form's action is still SIGNUP_URL), show a message instead of sending.
+(function () {
+  var form = document.querySelector(".signup");
+  if (!form) return;
+
+  form.addEventListener("submit", function (event) {
+    if (form.getAttribute("action") !== "SIGNUP_URL") return;   // real address set: send normally
+    event.preventDefault();
+    var note = form.querySelector(".form-note");
+    if (note) note.textContent = "Sign-up is not open yet. Please check back soon.";
+  });
+})();

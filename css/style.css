@@ -382,6 +382,35 @@ a { color: inherit; }
 
 /* Albums page */
 
+/* Newsletter and contact pages */
+.signup {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 26rem;
+  margin-top: 2rem;
+}
+.field label { display: block; margin-bottom: 0.35rem; font-weight: 500; }
+.optional { font-weight: 400; font-style: italic; opacity: 0.85; }
+.field input {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  background: rgba(255, 255, 244, 0.08);
+  color: var(--ivory);
+  border: 1px solid rgba(255, 255, 244, 0.5);
+  border-radius: 2px;
+  font: inherit;
+}
+.field input:focus-visible { outline-offset: 2px; background: rgba(255, 255, 244, 0.14); }
+button.button { justify-self: start; border: 0; font: inherit; font-weight: 500; cursor: pointer; }
+.inner .form-note { font-style: italic; }
+.inner .form-note:empty { display: none; }
+.inner .small-print { margin-top: 2rem; font-size: 1rem; opacity: 0.85; }
+
+.contact-block + .contact-block { margin-top: 4rem; }
+.inner .contact-link { margin-top: 1.5rem; font-size: clamp(1.4rem, 3vw, 1.9rem); }
+.link-list { margin: 0; padding: 0; list-style: none; }
+.link-list li + li { margin-top: 0.5rem; }
+
 /* Phones, inner pages only: picture-and-text blocks are centred (picture, name, short line, body text).
    The page title and standalone section titles (Members, Videos) stay left-aligned; the home page is unchanged. */
 @media (max-width: 40rem) {

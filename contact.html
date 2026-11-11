@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Ensemble Artemisia</title>
+  <meta name="description" content="Ensemble Artemisia: musicians, recordings and concerts.">
+
+  <!-- Fonts: EB Garamond (text and menu) + Alex Brush (script, large title only).
+       Fallbacks in the CSS keep the page readable if these fail to load. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-contact">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="inner-bg" data-pan="page" data-pan-start="0" data-pan-end="70" aria-hidden="true"></div>
+
+  <!-- ===== Shared header: copy this block to every page =====
+       Only change which link has. -->
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Ensemble Artemisia, home">
+      <!-- Replace images/logo.svg with the real logo (keep the file name, or update it here) -->
+      <img src="images/logo.svg" alt="" width="56" height="56">
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="music.html">Explore our music</a></li>
+        <li><a href="albums.html">Albums</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="contact.html" aria-current="page">Contact</a></li>
+      </ul>
+      <!-- Language switch: English only for now.
+           Later: turn this into a link pair, e.g. EN | DE, pointing to a /de/ copy of the site. -->
+      <span class="lang" title="More languages coming later">EN</span>
+    </nav>
+  </header>
+
+  <main id="main" class="inner">
+    <h1>Contact</h1>
+
+    <section class="contact-block" aria-labelledby="write-title">
+      <h2 id="write-title">Write to us</h2>
+      <p>For concert enquiries, programmes, collaborations or simply to say hello, send us a message. We are glad to hear from you.</p>
+      <!-- Replace EMAIL_ADDRESS (twice: in the link and in the visible text) with the ensemble's address -->
+      <p class="contact-link"><a href="mailto:EMAIL_ADDRESS">[email address]</a></p>
+    </section>
+
+    <!-- Social media: remove the comment marks around this block and fill in the links.
+    <section class="contact-block" aria-labelledby="follow-title">
+      <h2 id="follow-title">Follow us</h2>
+      <ul class="link-list">
+        <li><a href="https://www.youtube.com/CHANNEL">YouTube</a></li>
+        <li><a href="https://www.instagram.com/ACCOUNT">Instagram</a></li>
+      </ul>
+    </section>
+    -->
+
+    <section class="contact-block" aria-labelledby="news-title">
+      <h2 id="news-title">Newsletter</h2>
+      <p>Would you like to hear about our concerts and recordings? <a href="newsletter.html">Subscribe to our newsletter</a>.</p>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
