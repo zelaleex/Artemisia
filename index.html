@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ensemble Artemisia</title>
+  <meta name="description" content="Ensemble Artemisia: musicians, recordings and concerts.">
+
+  <!-- Fonts: EB Garamond (text and menu) + Alex Brush (script, large title only).
+       Fallbacks in the CSS keep the page readable if these fail to load. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-home">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== Shared header: copy this block to every page =====
+       Only change which link has aria-current="page". -->
+  <header class="site-header">
+    <a class="logo" href="index.html" aria-label="Ensemble Artemisia, home">
+      <!-- Replace images/logo.svg with the real logo (keep the file name, or update it here) -->
+      <img src="images/logo.svg" alt="" width="56" height="56">
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="music.html">Explore our music</a></li>
+        <li><a href="albums.html">Albums</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <!-- Language switch: English only for now.
+           Later: turn this into a link pair, e.g. EN | DE, pointing to a /de/ copy of the site. -->
+      <span class="lang" title="More languages coming later">EN</span>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-bg" data-pan="hero" data-pan-start="0" data-pan-end="60" aria-hidden="true"></div>
+      <h1>Ensemble Artemisia</h1>
+      <p class="welcome">
+        Step inside and discover our music, our projects and the stories that inspire 
+        us. Explore our repertoire, meet the musicians and follow our journey through 
+        the fascinating world of early music. 
+        Take your time, look around — and welcome to the world of Ensemble 
+        Artemisia.
+      </p>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

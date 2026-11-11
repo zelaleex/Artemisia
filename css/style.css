@@ -1,0 +1,471 @@
+/* ==========================================================
+   Ensemble Artemisia: shared styles
+   Change colors and fonts in the :root block below.
+   ========================================================== */
+
+:root {
+  /* The ensemble's palette */
+  --navy: #151b54;
+  --purple: #36013f;
+  --burgundy: #800020;
+  --mauve: #7f525d;
+  --brown: #5c3317;
+  --green: #046307;
+  --ivory: #fffff4;
+
+  /* Fonts. The ensemble is still choosing, so swapping is one line:
+     replace a name in the lists below AND in the Google Fonts <link> in each HTML page.
+     Candidates: "EB Garamond" (the free Garamond), "Libre Baskerville",
+     "Old Standard TT", "Alex Brush" (a script: best kept for large titles only). */
+  --font-script: "Alex Brush", "Snell Roundhand", cursive;
+  --font-text: "EB Garamond", Garamond, Georgia, "Times New Roman", serif;
+
+  --page-pad: clamp(1.25rem, 4vw, 3rem);
+
+  /* Hero picture: wide group photo on desktop, tall one on phones (see the phone block below) */
+  --hero-image: url("../images/hero-desktop.jpg");
+
+  /* Height of the solid header bar (the home picture starts right below it) */
+  --header-h: 7rem;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--navy);
+  color: var(--ivory);
+  font-family: var(--font-text);
+  font-size: 1.1875rem;
+  line-height: 1.6;
+}
+
+img { max-width: 100%; height: auto; }
+
+a { color: inherit; }
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--ivory);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  background: var(--ivory);
+  color: var(--navy);
+}
+.skip-link:focus { top: 1rem; }
+
+/* ---------- Header: a solid bar at the top of every page ---------- */
+
+.site-header {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+  min-height: var(--header-h);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0.9rem var(--page-pad);
+  background: linear-gradient(180deg, var(--purple), var(--navy));
+  border-bottom: 4px double rgba(255, 255, 244, 0.5);   /* same double line as the picture frames */
+}
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("../images/pattern.svg") center / 100px 140px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.logo { align-self: center; display: block; line-height: 0; }
+.logo img { border-radius: 50%; }
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 0.25rem 0 0.15rem;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid transparent;
+}
+.site-nav a:hover { border-bottom-color: rgba(255, 255, 244, 0.5); }
+.site-nav a[aria-current="page"] { border-bottom-color: var(--ivory); }   /* the page you are on */
+
+.lang {
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(255, 255, 244, 0.5);
+  border-radius: 2px;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.menu-toggle { display: none; }
+
+/* ---------- Hero (home page) ---------- */
+
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100svh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem var(--page-pad) clamp(2.5rem, 8vh, 5rem);
+}
+
+/* The picture sits in its own layer. It starts aligned to the top, so the heads of the
+   musicians stay in view, and js/main.js pans it slowly while the page scrolls. */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* Layers: a navy veil (darker at the bottom, behind the title), the picture
+     (set by --hero-image at the top of this file), and a fallback if the picture fails. */
+  background-image:
+    linear-gradient(180deg, rgba(21, 27, 84, 0.2) 0%, rgba(21, 27, 84, 0.1) 35%, rgba(21, 27, 84, 0.25) 60%, rgba(21, 27, 84, 0.85) 100%),
+    var(--hero-image),
+    radial-gradient(ellipse at 15% 70%, var(--burgundy) 0%, transparent 55%),
+    linear-gradient(160deg, var(--purple) 0%, var(--navy) 100%);
+  background-size: cover;
+  background-position: center 0%;
+}
+
+.hero > :not(.hero-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 10ch;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(3.75rem, 12vw, 9.5rem);
+  line-height: 1;
+}
+
+.welcome {
+  max-width: 38ch;
+  margin: 1.5rem 0 0;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background: var(--burgundy);
+  color: var(--ivory);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+.button:hover { background: #99002a; }
+
+/* ---------- Inner pages (About us, Explore our music, ...) ----------
+   .inner is the shared base: painting background, faint pattern, headings. */
+
+.inner {
+  --pattern-opacity: 0.12;   /* strength of the background pattern: 0 turns it off */
+  min-height: calc(100vh - var(--header-h));
+  padding: 4rem var(--page-pad) 6rem;
+}
+
+/* The painting sits in its own fixed layer behind the page and pans while you scroll
+   (see js/main.js). It starts at the top, so the painted head stays in view. */
+.inner-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(21, 27, 84, 0.88), rgba(54, 1, 63, 0.92)),
+    url("../images/about-bg.jpg");
+  background-size: cover;
+  background-position: 70% 0%;
+}
+/* Faint baroque pattern over the painting; fixed, so it stays still while the page scrolls. */
+.inner::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: url("../images/pattern.svg") center top / 120px 168px;
+  opacity: var(--pattern-opacity);
+}
+
+.inner > * { position: relative; z-index: 1; max-width: 62rem; margin-inline: auto; }
+.inner h1, .inner h2, .inner h3 { margin: 0; font-weight: 500; line-height: 1.15; }
+.inner h1 {
+  margin-bottom: 3rem;
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: clamp(3.5rem, 9vw, 6.5rem);
+  line-height: 1;
+}
+.inner h2 { margin-bottom: 1.5rem; font-size: clamp(1.75rem, 3.5vw, 2.5rem); }
+.inner h3 { margin-bottom: 0.15rem; font-size: 1.6rem; }
+.inner p { margin: 0; max-width: 40ch; }
+.inner p + p { margin-top: 1rem; }   /* space between body paragraphs */
+
+/* Text next to a picture: the title sits level with the ornament above the picture, the short line
+   under it (role, subtitle) is small and italic, and a gap separates it from the body text. */
+.member > :last-child { padding-top: 0.25rem; }
+.role,
+.album-subtitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+}
+.inner .role + p,
+.inner .album-subtitle + p { margin-top: 1.35rem; }
+
+.group,
+.member {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) 1fr;
+  gap: 2.5rem;
+  align-items: start;   /* the text starts level with the ornament above the picture */
+}
+.group { grid-template-columns: minmax(0, 380px) 1fr; margin-bottom: 5rem; }
+.group img {
+  display: block;
+  width: 100%;
+  height: auto;
+  outline: 1px solid rgba(255, 255, 244, 0.45);   /* thin line set off from the photo */
+  outline-offset: 8px;
+}
+
+.members > h2 { margin-bottom: 3rem; }
+.member + .member { margin-top: 3.5rem; }
+.member + .member.member--gap { margin-top: 7rem; }  /* the extra space before the second group */
+
+.arch {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 999px 999px 0 0;   /* round top */
+}
+.arch--empty {
+  display: grid;
+  place-items: center;
+  background: var(--mauve);
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Baroque-style frames (portraits and group photo): a double line, a dotted pearl line inside,
+   a fine outer line, and a larger ornament above the top. */
+.frame {
+  position: relative;
+  padding: 0.9rem 0.9rem 0;
+  border: 1px solid rgba(255, 255, 244, 0.55);
+  border-bottom: 4px double rgba(255, 255, 244, 0.55);   /* plinth */
+  border-radius: 999px 999px 0 0;
+  outline: 1px solid rgba(255, 255, 244, 0.22);          /* fine outer line */
+  outline-offset: 6px;
+}
+.frame::before {
+  content: "";
+  position: absolute;
+  inset: 5px 5px 0;
+  border: 1px dotted rgba(255, 255, 244, 0.4);           /* pearl line */
+  border-bottom: 0;
+  border-radius: 999px 999px 0 0;
+  pointer-events: none;
+}
+.frame::after,
+.photo::after {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  width: 96px;
+  height: 32px;
+  transform: translate(-50%, -100%);
+  background: url("../images/ornament.svg") center / contain no-repeat;
+}
+.member .frame,
+.photo { margin-top: 2.75rem; }
+
+.photo {
+  position: relative;
+  outline: 1px solid rgba(255, 255, 244, 0.22);          /* fine outer line, outside the photo's own line */
+  outline-offset: 14px;
+}
+
+@media (max-width: 40rem) {
+  .group, .member { grid-template-columns: 1fr; gap: 1.25rem; }
+  .group .photo { max-width: 280px; }   /* the wrapper carries the outer frame, so it gets the width limit */
+  .frame { max-width: 300px; }
+}
+
+/* Explore our music page: click-to-load videos */
+.videos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 3rem;
+}
+.video-box {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  /* The thumbnail is set per video with --poster (see music.html);
+     the gradient shows if the picture file is missing. */
+  background:
+    var(--poster, none) center / cover no-repeat,
+    linear-gradient(160deg, var(--purple), var(--navy));
+}
+.video-box iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video-play {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 0;
+  background: linear-gradient(rgba(21, 27, 84, 0.1), rgba(21, 27, 84, 0.5));   /* keeps the play icon readable on any picture */
+  color: var(--ivory);
+  font: inherit;
+  cursor: pointer;
+}
+.video-play svg { width: 4.5rem; height: 4.5rem; }
+.video-play:hover svg { opacity: 0.8; }
+.video-play span { font-size: 0.95rem; opacity: 0.9; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); }
+.video h3 { margin-top: 1.25rem; }
+.video p { margin-top: 0.25rem; }
+
+@media (max-width: 40rem) {
+  .videos { grid-template-columns: 1fr; }
+}
+
+/* Albums page */
+
+/* Phones, inner pages only: picture-and-text blocks are centred (picture, name, short line, body text).
+   The page title and standalone section titles (Members, Videos) stay left-aligned; the home page is unchanged. */
+@media (max-width: 40rem) {
+  .group .photo,
+  .frame { margin-inline: auto; }
+
+  .group > :last-child,
+  .member > :last-child,
+  .video { text-align: center; }
+
+  .group p,
+  .member p { margin-inline: auto; }
+
+  /* Body text is justified (the short role and subtitle lines stay centred). The last line of each
+     paragraph is centred to match the blocks, and hyphenation keeps the word gaps even on narrow screens. */
+  .group p:not(.role):not(.album-subtitle),
+  .member p:not(.role) {
+    text-align: justify;
+    text-align-last: center;
+    hyphens: auto;
+  }
+}
+
+/* ---------- Slanted menu (desktop only) ----------
+   Change --nav-angle to adjust the slant:
+   -15deg is gentle, -25deg is moderate, -45deg is steep. */
+
+@media (min-width: 52.01rem) {
+  .site-nav {
+    --nav-angle: -25deg;
+    align-items: flex-end;
+    padding-right: 2.5rem;   /* room for the last slanted word */
+  }
+
+  .site-nav ul {
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    gap: 1.5rem;
+  }
+
+  .site-nav a {
+    white-space: nowrap;
+    transform: rotate(var(--nav-angle));
+    transform-origin: left bottom;
+  }
+}
+
+/* ---------- Phones and narrow windows ---------- */
+
+@media (max-width: 52rem) {
+  /* Tall group photo and a shorter bar on phones */
+  :root { --hero-image: url("../images/hero-mobile.jpg"); --header-h: 4.75rem; }
+
+  .menu-toggle {
+    display: block;
+    padding: 0.5rem 1rem;
+    background: rgba(21, 27, 84, 0.6);
+    color: var(--ivory);
+    border: 1px solid rgba(255, 255, 244, 0.5);
+    border-radius: 2px;
+    font: inherit;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--navy);
+    border-bottom: 4px double rgba(255, 255, 244, 0.5);
+  }
+  .site-nav.is-open { display: flex; }
+
+  .site-nav ul { flex-direction: column; gap: 0.25rem; }
+  .site-nav a { padding: 0.5rem 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}
