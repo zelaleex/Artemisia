@@ -26,6 +26,7 @@
 // data-pan="hero": the movement follows the scroll over the hero section.
 // data-pan="page": it follows the scroll over the whole page.
 // data-pan-start / data-pan-end: vertical position of the picture in percent (0 = top, 100 = bottom).
+// Without those two, the start comes from --hero-y and the distance from --hero-pan in css/style.css.
 (function () {
   var layers = document.querySelectorAll("[data-pan]");
   if (!layers.length) return;
@@ -36,9 +37,18 @@
   function update() {
     waiting = false;
     Array.prototype.forEach.call(layers, function (layer) {
-      var start = parseFloat(layer.getAttribute("data-pan-start")) || 0;
-      var end = parseFloat(layer.getAttribute("data-pan-end"));
-      if (isNaN(end)) end = 100;
+      var start, end;
+      if (layer.hasAttribute("data-pan-start")) {
+        start = parseFloat(layer.getAttribute("data-pan-start")) || 0;
+        end = parseFloat(layer.getAttribute("data-pan-end"));
+        if (isNaN(end)) end = 100;
+      } else {
+        // No start/end on the element: take them from the CSS (--hero-y and --hero-pan in css/style.css),
+        // so desktop and phones can have different values. The picture never slides past its bottom edge.
+        var css = window.getComputedStyle(layer);
+        start = parseFloat(css.getPropertyValue("--hero-y")) || 0;
+        end = Math.min(start + (parseFloat(css.getPropertyValue("--hero-pan")) || 0), 100);
+      }
 
       var progress = 0;   // people who prefer less motion get a still picture
       if (!reduceMotion.matches) {
@@ -47,7 +57,9 @@
           : document.documentElement.scrollHeight - window.innerHeight;
         if (range > 0) progress = Math.min(Math.max(window.scrollY / range, 0), 1);
       }
-      layer.style.backgroundPositionY = start + (end - start) * progress + "%";
+      var position = start + (end - start) * progress + "%";
+      layer.style.backgroundPositionY = position;
+      layer.style.setProperty("--pan-y", position);   // used by the home page picture
     });
   }
 

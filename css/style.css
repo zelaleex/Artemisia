@@ -25,6 +25,15 @@
   /* Hero picture: wide group photo on desktop, tall one on phones (see the phone block below) */
   --hero-image: url("../images/hero-desktop.jpg");
 
+  /* Hero picture framing (desktop values; the phone values are in the phone block below).
+     --hero-x / --hero-y: which part of the picture shows (0% = left / top edge, 100% = right / bottom edge).
+     --hero-zoom: size of the picture; 1 = it just fills the hero, 1.39 = 139%.
+     --hero-pan: how far the picture slides down while the page scrolls, in percent points (0 = still). */
+  --hero-x: 0%;
+  --hero-y: 37%;
+  --hero-zoom: 1.39;
+  --hero-pan: 60;
+
   /* Height of the solid header bar (the home picture starts right below it) */
   --header-h: 7rem;
 }
@@ -141,21 +150,32 @@ a { color: inherit; }
   padding: 3rem var(--page-pad) clamp(2.5rem, 8vh, 5rem);
 }
 
-/* The picture sits in its own layer. It starts aligned to the top, so the heads of the
-   musicians stay in view, and js/main.js pans it slowly while the page scrolls. */
+/* The picture sits in its own layer: .hero-bg holds a fallback (shown if the picture fails),
+   ::before is the picture itself, ::after a navy veil (darker at the bottom, behind the title).
+   The framing comes from --hero-x, --hero-y and --hero-zoom at the top of this file,
+   and js/main.js slides the picture slowly while the page scrolls (it sets --pan-y). */
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  /* Layers: a navy veil (darker at the bottom, behind the title), the picture
-     (set by --hero-image at the top of this file), and a fallback if the picture fails. */
-  background-image:
-    linear-gradient(180deg, rgba(21, 27, 84, 0.2) 0%, rgba(21, 27, 84, 0.1) 35%, rgba(21, 27, 84, 0.25) 60%, rgba(21, 27, 84, 0.85) 100%),
-    var(--hero-image),
+  overflow: hidden;
+  background:
     radial-gradient(ellipse at 15% 70%, var(--burgundy) 0%, transparent 55%),
     linear-gradient(160deg, var(--purple) 0%, var(--navy) 100%);
-  background-size: cover;
-  background-position: center 0%;
+}
+.hero-bg::before,
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.hero-bg::before {
+  background: var(--hero-image) var(--hero-x) var(--pan-y, var(--hero-y)) / cover no-repeat;
+  transform: scale(var(--hero-zoom));
+  transform-origin: var(--hero-x) var(--pan-y, var(--hero-y));
+}
+.hero-bg::after {
+  background: linear-gradient(180deg, rgba(21, 27, 84, 0.2) 0%, rgba(21, 27, 84, 0.1) 35%, rgba(21, 27, 84, 0.25) 60%, rgba(21, 27, 84, 0.85) 100%);
 }
 
 .hero > :not(.hero-bg) {
@@ -461,8 +481,14 @@ button.button { justify-self: start; border: 0; font: inherit; font-weight: 500;
 /* ---------- Phones and narrow windows ---------- */
 
 @media (max-width: 52rem) {
-  /* Tall group photo and a shorter bar on phones */
-  :root { --hero-image: url("../images/hero-mobile.jpg"); --header-h: 4.75rem; }
+  /* Tall group photo, its own framing, and a shorter bar on phones */
+  :root {
+    --hero-image: url("../images/hero-mobile.jpg");
+    --header-h: 5.55rem;   /* the real height of the bar here (logo + padding + line), so the hero ends exactly at the bottom of the screen */
+    --hero-x: 37%;
+    --hero-y: 100%;
+    --hero-zoom: 1.08;
+  }
 
   .menu-toggle {
     display: block;
