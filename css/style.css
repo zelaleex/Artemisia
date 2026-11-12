@@ -30,8 +30,8 @@
      --hero-zoom: size of the picture; 1 = it just fills the hero, 1.39 = 139%.
      --hero-pan: how far the picture slides down while the page scrolls, in percent points (0 = still). */
   --hero-x: 0%;
-  --hero-y: 36%;
-  --hero-zoom: 1.39;
+  --hero-y: 31%;
+  --hero-zoom: 1.44;
   --hero-pan: 60;
 
   /* Height of the solid header bar (the home picture starts right below it) */
