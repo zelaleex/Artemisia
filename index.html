@@ -14,13 +14,13 @@
 
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="page-home">
+<body class="page-home one-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ===== Shared header: copy this block to every page =====
-       Only change which link has aria-current="page". -->
+  <!-- ===== Header: stays at the top while the page scrolls =====
+       The menu links jump to the sections below; js/main.js underlines the section in view. -->
   <header class="site-header">
-    <a class="logo" href="index.html" aria-label="Ensemble Artemisia, home">
+    <a class="logo" href="#home" aria-label="Ensemble Artemisia, back to the top">
       <!-- Replace images/logo.svg with the real logo (keep the file name, or update it here) -->
       <img src="images/logo.svg" alt="" width="56" height="56">
     </a>
@@ -29,12 +29,12 @@
 
     <nav id="site-nav" class="site-nav" aria-label="Main">
       <ul>
-        <li><a href="index.html" aria-current="page">Home</a></li>
-        <li><a href="about.html">About us</a></li>
-        <li><a href="music.html">Explore our music</a></li>
-        <li><a href="albums.html">Albums</a></li>
-        <li><a href="newsletter.html">Newsletter</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About us</a></li>
+        <li><a href="#music">Explore our music</a></li>
+        <li><a href="#albums">Albums</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <!-- Language switch: English only for now.
            Later: turn this into a link pair, e.g. EN | DE, pointing to a /de/ copy of the site. -->
@@ -43,18 +43,223 @@
   </header>
 
   <main id="main">
-    <section class="hero">
+    <!-- ===== Home ===== -->
+    <section id="home" class="hero">
       <!-- The framing of the picture (position, size) is set in css/style.css: --hero-x, --hero-y, --hero-zoom -->
       <div class="hero-bg" data-pan="hero" aria-hidden="true"></div>
       <h1>Ensemble Artemisia</h1>
       <p class="welcome">
-        Step inside and discover our music, our projects and the stories that inspire 
-        us. Explore our repertoire, meet the musicians and follow our journey through 
-        the fascinating world of early music. 
-        Take your time, look around — and welcome to the world of Ensemble 
+        Step inside and discover our music, our projects and the stories that inspire
+        us. Explore our repertoire, meet the musicians and follow our journey through
+        the fascinating world of early music.
+        Take your time, look around — and welcome to the world of Ensemble
         Artemisia.
       </p>
     </section>
+
+    <!-- Everything below the hero sits on the painting background.
+         The painting only shows inside this block, so it never covers the hero picture. -->
+    <div class="inner">
+      <div class="inner-bg" data-pan="page" data-pan-start="0" data-pan-end="70" aria-hidden="true"></div>
+
+      <!-- ===== About us ===== -->
+      <section id="about" class="page-section" aria-labelledby="about-title">
+        <h2 id="about-title" class="section-title">About us</h2>
+
+        <section class="group" aria-labelledby="group-title">
+          <div class="photo"><img src="images/group.jpg" alt="The four musicians resting their heads on each other in a candlelit chapel" width="900" height="1351"></div>
+          <div>
+            <h3 id="group-title">Ensemble Artemisia</h3>
+            <p>Founded in March 2025, Ensemble Artemisia is an international early music ensemble based in Vienna, united by a passion for historically informed performance practice.</p>
+            <p>Inspired by the art and life of the Baroque painter Artemisia Gentileschi (1593–1653), a symbol of creative independence, the ensemble brings a poetic and powerful voice to the music of the 17th and 18th centuries. Its programmes explore the emotional contrasts and deeply human stories at the heart of this repertoire, combining historical research with vivid and expressive performances.</p>
+            <p>The ensemble’s members are active across Europe as soloists and chamber musicians, bringing together diverse cultural and academic backgrounds. Ensemble Artemisia specialises in Baroque cantatas in Italian, French and Latin, while also exploring lesser-known repertoire and historical sources.</p>
+            <p>In 2026, the ensemble released a music video featuring music by the rediscovered composer Isabella Leonarda and recorded its first CD, Duello Amoroso, in Madrid with HR Recordings, with the support of the Goethe-Institut.</p>
+          </div>
+        </section>
+
+        <section class="members" aria-labelledby="members-title">
+          <h3 id="members-title">Members</h3>
+          <article class="member">
+            <div class="frame"><img class="arch" src="images/members/catalina.jpg" alt="Portrait of Catalina Paz in a red velvet dress" width="600" height="750" loading="lazy"></div>
+            <div>
+              <h4>Catalina Paz</h4>
+              <p class="role">Soprano</p>
+              <p>Chilean-born lyric coloratura soprano Catalina Paz has developed her career between Spain and Austria, with a particular focus on Baroque and Classical repertoire. Her operatic roles include Konstanze in Mozart’s Die Entführung aus dem Serail at the Vienna Musikverein, Galatea in Handel’s Acis and Galatea, Sylva Varescu in Kálmán’s Die Csárdásfürstin, Musetta in Puccini’s La Bohème and Lisinga in Gluck’s Le Cinesi at the Teatro de la Maestranza in Seville. She has performed at the Musikverein, Wiener Konzerthaus, MuTh and Palau de la Música Valencia, and is currently specialising in Early Music at MUK Vienna.</p>
+            </div>
+          </article>
+          <article class="member">
+            <div class="frame"><img class="arch" src="images/members/rebecca.jpg" alt="Portrait of Rebecca Taio holding a wooden flute" width="600" height="750" loading="lazy"></div>
+            <div>
+              <h4>Rebecca Taio</h4>
+              <p class="role">Traverso</p>
+              <p>Italian flautist and cellist Rebecca Taio specialises in historically informed performance, with a particular focus on historical flutes and Baroque repertoire. She has performed Mozart’s Flute Concertos K. 313 and K. 314, as well as the Concerto for Flute and Harp K. 299 with the Oltenia Philharmonic Orchestra, and Vivaldi concertos with Labirinti Armonici. Her work has taken her to festivals and ensembles including Musikfest Bremen, ViertelBarock Festival Vienna and Zamus:Academy Cologne. She records for Brilliant Classics, with her albums Undine and Alter Ego receiving critical acclaim.</p>
+            </div>
+          </article>
+          <article class="member">
+            <div class="frame"><img class="arch" src="images/members/viktoria.jpg" alt="Portrait of Viktória Menyhárt with a cello" width="600" height="750" loading="lazy"></div>
+            <div>
+              <h4>Viktória Menyhárt</h4>
+              <p class="role">Baroque cello and viola da gamba</p>
+              <p>Hungarian cellist Viktória Menyhárt is a versatile musician working across modern and historically informed performance. She performs as a chamber and orchestral musician at venues and festivals including the Wiener Konzerthaus, Oper Graz, Resonanzen and Steirischer Herbst, and regularly collaborates with the Graz Philharmonic Orchestra and Savaria Symphony Orchestra. Alongside the modern cello, she specialises in historical cello and is developing her practice on the viola da gamba. Her current projects include historically informed recordings of Beethoven’s cello sonatas and chamber repertoire.</p>
+            </div>
+          </article>
+          <article class="member">
+            <div class="frame"><img class="arch" src="images/members/sophia.jpg" alt="Portrait of Hongyi Sophia Cai in a black dress" width="600" height="750" loading="lazy"></div>
+            <div>
+              <h4>Hongyi Sophia Cai</h4>
+              <p class="role">Harpsichord</p>
+              <p>Chinese-born pianist Sophia Cai has developed her career across Australia and Europe, with a particular focus on chamber music, historically informed performance and historical keyboard instruments. A prizewinner of the International Bach Piano Competition in Saarbrücken/Würzburg, she has performed at venues including the Musikverein and Wiener Konzerthaus, as well as Mozarthaus Vienna. Her repertoire spans from Baroque to Classical and Romantic works, and she has also appeared as a conductor, leading performances of works by Haydn and Purcell. She currently specialises in historical keyboard instruments in Vienna and performs with Ensemble Artemisia.</p>
+            </div>
+          </article>
+          <article class="member member--gap">
+            <div class="frame"><img class="arch" src="images/members/maria.jpg" alt="Portrait of Maria Bunea holding a long-necked lute" width="600" height="750" loading="lazy"></div>
+            <div>
+              <h4>Maria Bunea</h4>
+              <p class="role">Lute</p>
+              <p>Born in Chișinău, Maria Bunea is a guitarist and lutenist based in Vienna. She studied at the Conservatoire de Strasbourg with Susana Prieto and Alexis Muzurakis, before completing her studies at the University of Music and Performing Arts Vienna with Adriano del Sal and Luciano Contini in 2022. Her artistic focus lies in historically informed performance, particularly the music of the 16th to 19th centuries. She performs as a soloist and continuo player, bringing together historical research, stylistic sensitivity and a refined approach to sound.</p>
+            </div>
+          </article>
+          <article class="member">
+            <div class="frame"><img class="arch" src="images/members/verena.jpg" alt="Portrait of Verena Aigner lying on a wooden deck" width="600" height="750" loading="lazy"></div>
+            <div>
+              <h4>Verena Aigner</h4>
+              <p class="role">Photographer</p>
+              <p>I am Verena, an optimistic daydreamer. When it comes to photography I am drawn to femininity, charisma, romance, and the nostalgic beauty of another era. What fascinates me most is the magic created through collaboration with an inspiring or like-minded model - the chemistry, energy and creativity. I love discovering what the moment gives us and allowing something authentic and unique to emerge. I want to create photographs that feel intuitive, sensual, and creative, inspired by the beauty and nostalgie of times gone by. Email: aigner-verena@gmx.at </p>
+            </div>
+          </article>
+          <article class="member">
+            <div class="frame"><div class="arch arch--empty" role="img" aria-label="Photo of Alex Zelkó coming soon">Photo coming soon</div></div>
+            <div>
+              <h4>Alex Zelkó</h4>
+              <p class="role">Website</p>
+              <p>Lorem Ipsum hocus pocus I will think of something joyous.</p>
+            </div>
+          </article>
+        </section>
+      </section>
+
+      <!-- ===== Explore our music ===== -->
+      <section id="music" class="page-section" aria-labelledby="music-title">
+        <h2 id="music-title" class="section-title">Explore our music</h2>
+
+        <section class="group" aria-labelledby="news-title">
+          <div class="photo">
+            <img src="images/news-competition.jpg" alt="The four musicians holding certificates at a prize ceremony, together with other guests" width="929" height="700">
+          </div>
+          <div>
+            <h3 id="news-title">News</h3>
+            <p>We’re so happy to share that we were awarded 2nd prize at the Kitty Weinberger Competition!</p>
+            <p>It’s been quite a journey: just two weeks after returning from Madrid, we threw ourselves into preparing our French programme for the first time — and introducing a new member of the ensemble: the viola da gamba.</p>
+            <p>Now it’s time for a little breather… but of course, we already have new plans and a very long to-do list waiting for us.</p>
+            <p>Thank you to everyone who supported us along the way. On to the next adventure! ✨</p>
+            <p>Picture: © Gerhard Fally </p>
+          </div>
+        </section>
+
+        <section aria-labelledby="videos-title">
+          <h3 id="videos-title">Videos</h3>
+          <div class="videos">
+            <article class="video">
+              <div class="photo">
+                <!-- Thumbnail: save a 16:9 picture as images/videos/leonarda.jpg -->
+                <div class="video-box" style="--poster: url('images/videos/leonarda.jpg')">
+                  <!-- Replace VIDEO_ID with the YouTube id (the part after v= in the video link) -->
+                  <button class="video-play" type="button" data-video-id="vHhWLtzZTdU" data-title="Isabella Leonarda">
+                    <svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="36" cy="36" r="34"/><path d="M29 22 L52 36 L29 50 Z" fill="currentColor" stroke="none"/></svg>
+                    <span>Plays on YouTube</span>
+                  </button>
+                </div>
+              </div>
+              <h4>Isabella Leonarda</h4>
+              <p class="role">[Piece title]</p>
+            </article>
+            <article class="video">
+              <div class="photo">
+                <!-- Thumbnail: save a 16:9 picture as images/videos/hasse.jpg -->
+                <div class="video-box" style="--poster: url('images/videos/hasse.jpg')">
+                  <!-- Replace VIDEO_ID with the YouTube id (the part after v= in the video link) -->
+                  <button class="video-play" type="button" data-video-id="WUYTyuvUmt0" data-title="Hasse">
+                    <svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="36" cy="36" r="34"/><path d="M29 22 L52 36 L29 50 Z" fill="currentColor" stroke="none"/></svg>
+                    <span>Plays on YouTube</span>
+                  </button>
+                </div>
+              </div>
+              <h4>Hasse</h4>
+              <p class="role">[Piece title]</p>
+            </article>
+          </div>
+        </section>
+      </section>
+
+      <!-- ===== Albums ===== -->
+      <section id="albums" class="page-section" aria-labelledby="albums-title">
+        <h2 id="albums-title" class="section-title">Albums</h2>
+
+        <!-- One block per album: copy this whole <section> to add another album -->
+        <section class="group" aria-labelledby="album-1-title">
+          <div class="photo">
+            <img src="images/album-duello-amoroso.jpg" alt="Cover of the album Duello Amoroso: the four musicians among white columns" width="900" height="900">
+          </div>
+          <div>
+            <h3 id="album-1-title">Duello Amoroso</h3>
+            <p class="album-subtitle">XVIII Century Italian Cantatas<br>HR Recordings, 2026</p>
+            <p>In the Baroque era, love is not a peaceful feeling but rather a duel, a confrontation of opposing passions, tenderness and suspicion, ardor and betrayal.</p>
+            <p>Inspired by the figure of Artemisia Gentileschi, an artist who managed to emerge, imposing her art and defending with all her might her own vision of love and life, Artemisia Ensemble offers a musical journey into the meanderings of the human soul and the force that turns the world around: love.</p>
+          </div>
+        </section>
+      </section>
+
+      <!-- ===== Newsletter ===== -->
+      <section id="newsletter" class="page-section" aria-labelledby="newsletter-title">
+        <h2 id="newsletter-title" class="section-title">Newsletter</h2>
+
+        <section aria-labelledby="signup-title">
+          <h3 id="signup-title">Stay in touch</h3>
+          <p>Concert dates, new recordings and news from the ensemble, sent to you a few times a year.</p>
+
+          <!-- Sign-up form. It does not send anything yet:
+               replace SIGNUP_URL with the form address from your newsletter service
+               (Mailchimp, Brevo, Buttondown, ...), and rename the fields if that service asks for other names.
+               Until then, js/main.js shows a short message instead of sending. -->
+          <form class="signup" action="SIGNUP_URL" method="post">
+            <div class="field">
+              <label for="signup-name">Name <span class="optional">(optional)</span></label>
+              <input id="signup-name" name="name" type="text" autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="signup-email">Email address</label>
+              <input id="signup-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <button class="button" type="submit">Subscribe</button>
+            <p class="form-note" role="status"></p>
+          </form>
+
+          <p class="small-print">We use your address only to send you the newsletter. You can unsubscribe at any time.</p>
+        </section>
+      </section>
+
+      <!-- ===== Contact ===== -->
+      <section id="contact" class="page-section" aria-labelledby="contact-title">
+        <h2 id="contact-title" class="section-title">Contact</h2>
+
+        <section class="contact-block" aria-labelledby="write-title">
+          <h3 id="write-title">Write to us</h3>
+          <p>For concert enquiries, programmes, collaborations or simply to say hello, send us a message. We are glad to hear from you.</p>
+          <!-- Replace EMAIL_ADDRESS (twice: in the link and in the visible text) with the ensemble's address -->
+          <p class="contact-link"><a href="mailto:EMAIL_ADDRESS">[email address]</a></p>
+        </section>
+
+        <!-- Social media: remove the comment marks around this block and fill in the links.
+        <section class="contact-block" aria-labelledby="follow-title">
+          <h3 id="follow-title">Follow us</h3>
+          <ul class="link-list">
+            <li><a href="https://www.youtube.com/CHANNEL">YouTube</a></li>
+            <li><a href="https://www.instagram.com/ACCOUNT">Instagram</a></li>
+          </ul>
+        </section>
+        -->
+      </section>
+    </div>
   </main>
 
   <script src="js/main.js"></script>

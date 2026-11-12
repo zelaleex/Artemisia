@@ -20,6 +20,56 @@
       button.focus();
     }
   });
+
+  // One-page layout: a menu link jumps to a section on this page, so close the menu after the tap
+  nav.addEventListener("click", function (event) {
+    if (event.target.closest && event.target.closest('a[href^="#"]')) setOpen(false);
+  });
+})();
+
+// One-page layout: underline the menu link of the section that is in view.
+(function () {
+  var links = document.querySelectorAll('.site-nav a[href^="#"]');
+  if (!links.length) return;
+
+  var sections = [];
+  Array.prototype.forEach.call(links, function (link) {
+    var section = document.getElementById(link.getAttribute("href").slice(1));
+    if (section) sections.push({ link: link, section: section });
+  });
+  if (!sections.length) return;
+
+  var header = document.querySelector(".site-header");
+  var waiting = false;
+
+  function update() {
+    waiting = false;
+    // The current section is the last one whose top has passed a line a little below the header
+    var line = (header ? header.offsetHeight : 0) + window.innerHeight * 0.25;
+    var current = sections[0];
+    sections.forEach(function (item) {
+      if (item.section.getBoundingClientRect().top <= line) current = item;
+    });
+    // At the very bottom the last section may be too short to reach the line
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+      current = sections[sections.length - 1];
+    }
+    sections.forEach(function (item) {
+      if (item === current) item.link.setAttribute("aria-current", "true");
+      else item.link.removeAttribute("aria-current");
+    });
+  }
+
+  function requestUpdate() {
+    if (!waiting) {
+      waiting = true;
+      window.requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+  update();
 })();
 
 // Sliding backgrounds: the picture pans slowly while the page scrolls.
