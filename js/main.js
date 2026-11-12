@@ -125,6 +125,77 @@
   update();
 })();
 
+// Paintings behind the sections (one-page layout): the paintings listed in index.html follow one another
+// while the page scrolls. Each painting has its "station" along the page; between two stations the next
+// painting fades in over the previous one, and every painting drifts slowly while it is on screen.
+(function () {
+  var holder = document.querySelector(".inner-bg");
+  if (!holder) return;
+  var layers = Array.prototype.slice.call(holder.querySelectorAll(".painting"));
+  if (!layers.length) return;
+
+  var block = holder.parentNode;   // the part of the page that sits on the paintings
+  var FADE = 0.45;                 // share of the way between two paintings that the fade takes (0.1 = quick, 1 = always fading)
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var waiting = false;
+
+  holder.classList.add("has-paintings");
+
+  function clamp(value) { return Math.min(Math.max(value, 0), 1); }
+
+  // A painting is only downloaded shortly before its turn
+  function load(layer) {
+    if (layer.painted) return;
+    layer.painted = true;
+    layer.style.backgroundImage = 'url("' + layer.getAttribute("data-painting") + '")';
+    var x = parseFloat(layer.getAttribute("data-x"));
+    if (!isNaN(x)) layer.style.backgroundPositionX = x + "%";
+  }
+
+  function update() {
+    waiting = false;
+    var last = layers.length - 1;
+    var range = block.offsetHeight - window.innerHeight;
+    var progress = range > 0 ? clamp(-block.getBoundingClientRect().top / range) : 0;
+    var place = progress * last;   // 0 = at the first painting, 1 = at the second, ...
+
+    var opacities = layers.map(function (layer, i) {
+      if (i === 0) return 1;
+      var t = clamp((place - (i - 1) - (1 - FADE) / 2) / FADE);
+      return t * t * (3 - 2 * t);   // eased, so the fade starts and ends softly
+    });
+
+    layers.forEach(function (layer, i) {
+      if (place >= i - 1.25) load(layer);
+
+      // A painting completely covered by the next one is switched off
+      var covered = i < last && opacities[i + 1] >= 1;
+      layer.style.opacity = covered ? 0 : opacities[i];
+
+      // Drift: from data-pan-start to data-pan-end over the stretch where this painting can be seen
+      var start = parseFloat(layer.getAttribute("data-pan-start")) || 0;
+      var end = parseFloat(layer.getAttribute("data-pan-end"));
+      if (isNaN(end)) end = start;
+      var from = Math.max(i - 1, 0);
+      var to = Math.min(i + 1, last);
+      var local = to > from ? clamp((place - from) / (to - from)) : progress;
+      if (reduceMotion.matches) local = 0;   // people who prefer less motion get still pictures
+      layer.style.backgroundPositionY = start + (end - start) * local + "%";
+    });
+  }
+
+  function requestUpdate() {
+    if (!waiting) {
+      waiting = true;
+      window.requestAnimationFrame(update);
+    }
+  }
+
+  window.addEventListener("scroll", requestUpdate, { passive: true });
+  window.addEventListener("resize", requestUpdate);
+  update();
+})();
+
 // Click-to-load videos: nothing is requested from YouTube until the visitor presses play.
 (function () {
   var buttons = document.querySelectorAll(".video-play");

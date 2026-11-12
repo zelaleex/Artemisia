@@ -60,7 +60,19 @@
     <!-- Everything below the hero sits on the painting background.
          The painting only shows inside this block, so it never covers the hero picture. -->
     <div class="inner">
-      <div class="inner-bg" data-pan="page" data-pan-start="0" data-pan-end="70" aria-hidden="true"></div>
+      <!-- Paintings behind the sections: they follow one another while the page scrolls, each one fading
+           into the next and drifting slowly (see js/main.js). One line per painting, in the order they appear.
+             data-painting   the picture file
+             data-x          which part shows if the picture is wider than the screen (0 = left edge, 100 = right edge)
+             data-pan-start / data-pan-end   how the picture drifts while it is on screen (0 = its top, 100 = its bottom)
+           The picture files are web-sized copies (about 1600 px wide); the full-size originals are kept
+           in images/paintings/originals/, which is not uploaded. -->
+      <div class="inner-bg" aria-hidden="true">
+        <div class="painting" data-painting="images/about-bg.jpg" data-x="70" data-pan-start="0" data-pan-end="70"></div>
+        <div class="painting" data-painting="images/paintings/painting-2.jpg" data-x="55" data-pan-start="0" data-pan-end="70"></div>
+        <!-- This one stops drifting halfway, so on wide screens the basket at the bottom stays out of view -->
+        <div class="painting" data-painting="images/paintings/painting-3.jpg" data-x="65" data-pan-start="0" data-pan-end="50"></div>
+      </div>
 
       <!-- ===== About us ===== -->
       <section id="about" class="page-section" aria-labelledby="about-title">

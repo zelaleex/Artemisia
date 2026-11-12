@@ -474,19 +474,38 @@ html { scroll-behavior: smooth; }
 /* The painting layer now lives inside .inner: keep it fixed and full-size (not a centred column like the sections) */
 .one-page .inner > .inner-bg {
   position: fixed;
-  z-index: 0;
+  z-index: -1;   /* below the baroque pattern (.inner::before), which lies over the painting */
   max-width: none;
   margin: 0;
+}
+
+/* Paintings that follow one another behind the sections (the list is in index.html, the movement in js/main.js).
+   Without JavaScript the .inner-bg rule above still shows the first painting. */
+.inner-bg.has-paintings { background: var(--navy); }
+.painting {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 0%;
+  opacity: 0;
+}
+/* The dark veil that keeps the text readable, over whichever painting is showing */
+.inner-bg.has-paintings::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(21, 27, 84, 0.88), rgba(54, 1, 63, 0.92));
 }
 
 .one-page .page-section + .page-section { margin-top: 8rem; }
 .one-page .page-section + .page-section::before {
   content: "";
   display: block;
-  width: 120px;
-  height: 40px;
+  width: min(26rem, 100%);   /* the divider: long arms with curled ends (images/divider.svg) */
+  aspect-ratio: 20 / 3;
   margin: 0 auto 5rem;
-  background: url("../images/ornament.svg") center / contain no-repeat;
+  background: url("../images/divider.svg") center / contain no-repeat;
   opacity: 0.85;
 }
 
